@@ -1,0 +1,253 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
+	controllerName="contract.zlegal.controller.View1" displayBlock="true">
+	<Shell id="shell">
+		<NavContainer id="wizardNavContainer">
+			<pages>
+				<Page id="wizardContentPage" showHeader="false" title="Automated Process of transferring customer to collection / Legal">
+					<content>
+						<Wizard id="AutoLegalWizard" complete="wizardCompletedHandler" finishButtonText="Submit for approval">
+							<WizardStep id="idCustomerDet" title="Customer Details" validated="false" activate="additionalInfoValidation">
+								<MessageStrip class="sapUiSmallMarginBottom" text="{localModel>/generalMsg}" showIcon="true"/>
+								<VBox class="sapUiSmallMargin">
+									<f:SimpleForm id="SimpleFormChange354" editable="true" layout="ResponsiveGridLayout" title="General Customer Details" labelSpanXL="3"
+										labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="3" emptySpanL="3" emptySpanM="3" emptySpanS="0"
+										columnsXL="1" columnsL="2" columnsM="1" singleContainerFullSize="false">
+										<f:content>
+											<core:Title text=""/>
+											<Label id="idLblRequestId" text="Request ID" visible="{localModel>/idRequestId}"/>
+											<Text id="idRequestId" text="{/ReqId}" visible="{localModel>/idRequestId}"/>
+											<Label text="Request Type" required="true"/>
+											<Label text="Customer ID"/>
+											<Input id="idCustID" type="Text" placeholder="Enter Customer ID" showSuggestion="true" showValueHelp="true"
+												valueHelpRequest=".onValueHelpRequestCust" submit="onEnterCustomer" enabled="{localModel>/idCustID}">
+												<suggestionItems>
+													<core:Item text="{PayerId}"/>
+												</suggestionItems>
+											</Input>
+											<Label text="Name (EN)"/>
+											<Text id="idNameEn" text="{/Name}"/>
+											<Label text="Name (AR)"/>
+											<Text id="idNameAr" textDirection="RTL" text="{/Name_Ar}"/>
+											<Label text="Sales Office"/>
+											<Text id="idSalesOffice" text="{/SalesOffice}"/>
+											<Text id="idSoffDescr" text="{/SalesOfficeDescr}"/>
+											<Label text="Pre-Seller"/>
+											<Text id="idPreseller" text="{/Preseller}"/>
+											<Text id="idPresellerName" text="{/PresellerName}"/>
+											<Label text="Pending From" visible="{localModel>/idPendingFrom}"/>
+											<Text id="idPendingFrom" text="{/PendingFrom}" visible="{localModel>/idPendingFrom}"/>
+											<Label text="Request By/At" visible="{localModel>/idPendingFrom}"/>
+											<Text id="idRequested" text="{/RequestBy}/{/RequestOn}/{/RequestAt}" visible="{localModel>/idPendingFrom}"/>
+											<core:Title text=""/>
+											<Label text="Channel"/>
+											<!--<Text id="idChannelDescr" text="{/Channel}"/>-->
+											<Text id="idChannel" text="{/Channel}-{/ChannelDescr}"/>
+											<Label text="Payment Term"/>
+											<Text id="idPayTerms" text="{/Zterm}-{/Zterm_Desc}"/>
+											<Label text="Open Balance(SAR)"/>
+											<Text id="idReceivable"
+												text="{ parts: [ { path: '/ReceivableAmt' },'SAR' ], type: 'sap.ui.model.type.Currency', formatOptions: { maxFractionDigits: 2 } }"/>
+											<Label text="Status" visible="{localModel>/idStatus}"/>
+											<Text id="idStatus" text="{ path: '/Status', formatter: '.formatterStatus' }" visible="{localModel>/idStatus}"/>
+											<Label text="Current Approval" visible="{localModel>/idStatus}"/>
+											<Text id="idLevel" text="{ path: '/Lvl', formatter: '.formatterLevel' }" visible="{localModel>/idStatus}"/>
+											<Label text="Promissory Note(1)" visible="{localModel>/idPromNoteExpDate}"/>
+											<Text class="sapUiSmallMarginEnd" id="idPNNo" visible="{localModel>/idPromNoteExpDate}"
+												text="{ type: 'sap.ui.model.type.Currency', formatOptions: { maxFractionDigits: 0 }, parts: [ { path: '/PromissoryNote' }, 'SAR'] }"/>
+											<Label text="P.Note Expiry(1)" visible="{localModel>/idPromNoteExpDate}"/><Text class="sapUiMediumMarginEnd" id="idPNExpDate" text="{/PromNoteExpDate}"/>
+											<Label text="Promissory Note(2)" visible="{localModel>/idPromNoteExpDate2}"/>
+											<Text class="sapUiSmallMarginEnd" id="idPNNo2" visible="{localModel>/idPromNoteExpDate2}"
+												text="{ type: 'sap.ui.model.type.Currency', formatOptions: { maxFractionDigits: 0 }, parts: [ { path: '/PromissoryNote2' }, 'SAR'] }"/>
+											<Label text="P.Note Expiry(2)" visible="{localModel>/idPromNoteExpDate2}"/><Text class="sapUiMediumMarginEnd" id="idPNExpDate2" text="{/PromNoteExpDate2}"/>
+											<Label text="Promissory Note(3)" visible="{localModel>/idPromNoteExpDate3}"/>
+											<Text class="sapUiSmallMarginEnd" id="idPNNo3" visible="{localModel>/idPromNoteExpDate3}"
+												text="{ type: 'sap.ui.model.type.Currency', formatOptions: { maxFractionDigits: 0 }, parts: [ { path: '/PromissoryNote3' }, 'SAR'] }"/>
+											<Label text="P.Note Expiry(3)" visible="{localModel>/idPromNoteExpDate3}"/><Text class="sapUiMediumMarginEnd" id="idPNExpDate3" text="{/PromNoteExpDate3}"/>
+											<Label text="Promissory Note(4)" visible="{localModel>/idPromNoteExpDate4}"/>
+											<Text class="sapUiSmallMarginEnd" id="idPNNo4" visible="{localModel>/idPromNoteExpDate4}"
+												text="{ type: 'sap.ui.model.type.Currency', formatOptions: { maxFractionDigits: 0 }, parts: [ { path: '/PromissoryNote4' }, 'SAR'] }"/>
+											<Label text="P.Note Expiry(4)" visible="{localModel>/idPromNoteExpDate4}"/><Text class="sapUiMediumMarginEnd" id="idPNExpDate4" text="{/PromNoteExpDate4}"/>
+										</f:content>
+									</f:SimpleForm>
+									<MessageStrip class="sapUiSmallMarginBottom" text="{localModel>/docAgingMsg}" showIcon="true"/>
+									<f:SimpleForm id="idAgingData" editable="false" title="" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+										labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="2" columnsM="1"
+										singleContainerFullSize="false">
+										<f:content>
+											<core:Title text=""/>
+											<Label text="Not Due"/>
+											<Text id="idNotDue"
+												text="{ type: 'sap.ui.model.type.Currency', formatOptions: { maxFractionDigits: 2 }, parts: [ { path: '/NotDue' }, 'SAR'] }"/>
+											<Label text="1-30 Days"/>
+											<Text id="idWrbtr30"
+												text="{ type: 'sap.ui.model.type.Currency', formatOptions: { maxFractionDigits: 2 }, parts: [ { path: '/Wrbtr30' }, 'SAR'] }"/>
+											<Label text="31-60 Days"/>
+											<Text id="idWrbtr60"
+												text="{ type: 'sap.ui.model.type.Currency', formatOptions: { maxFractionDigits: 2 }, parts: [ { path: '/Wrbtr60' }, 'SAR'] }"/>
+											<Label text="61-90 Days"/>
+											<Text id="idWrbtr90"
+												text="{ type: 'sap.ui.model.type.Currency', formatOptions: { maxFractionDigits: 2 }, parts: [ { path: '/Wrbtr90' }, 'SAR'] }"/>
+											<Label text="91-120 Days"/>
+											<Text id="idWrbtr120"
+												text="{ type: 'sap.ui.model.type.Currency', formatOptions: { maxFractionDigits: 2 }, parts: [ { path: '/Wrbtr120' }, 'SAR'] }"/>
+											<Label text="121-150 Days"/>
+											<Text id="idWrbtr150"
+												text="{ type: 'sap.ui.model.type.Currency', formatOptions: { maxFractionDigits: 2 }, parts: [ { path: '/Wrbtr150' }, 'SAR'] }"/>
+											<Label text="151-180 Days"/>
+											<Text id="idWrbtr180"
+												text="{ type: 'sap.ui.model.type.Currency', formatOptions: { maxFractionDigits: 2 }, parts: [ { path: '/Wrbtr180' }, 'SAR'] }"/>
+											<Label text="181-270 Days"/>
+											<Text id="idWrbtr270"
+												text="{ type: 'sap.ui.model.type.Currency', formatOptions: { maxFractionDigits: 2 }, parts: [ { path: '/Wrbtr270' }, 'SAR'] }"/>
+											<Label text="271-360 Days"/>
+											<Text id="idWrbtr360"
+												text="{ type: 'sap.ui.model.type.Currency', formatOptions: { maxFractionDigits: 2 }, parts: [ { path: '/Wrbtr360' }, 'SAR'] }"/>
+											<core:Title text=""/>
+											<Label text="Greater than 360 Days"/>
+											<Text id="idWrbtrgt360"
+												text="{ type: 'sap.ui.model.type.Currency', formatOptions: { maxFractionDigits: 2 }, parts: [ { path: '/Wrbtrgt360' }, 'SAR'] }"/>
+											<Label text="Total"/>
+											<Text id="idTotal"
+												text="{ type: 'sap.ui.model.type.Currency', formatOptions: { maxFractionDigits: 2 }, parts: [ { path: '/Total' }, 'SAR'] }"/>
+											<Label text="Total Due"/>
+											<Text id="idTotalDue"
+												text="{ type: 'sap.ui.model.type.Currency', formatOptions: { maxFractionDigits: 2 }, parts: [ { path: '/TotalDue' }, 'SAR'] }"/>
+											<Label text="Last Invoice No"/>
+											<Text id="idLastInv" text="{/LastInv}"/>
+											<Label text="Last Invoice Date"/>
+											<Text id="idLastInvDate" text="{ type:'sap.ui.model.type.Date', formatOptions : { style:'medium'}, path: '/LastInvDate' }"/>
+											<Label text="Last Payment Date"/>
+											<Text id="idLastDocdate" text="{ type:'sap.ui.model.type.Date', formatOptions : { style:'medium'}, path: '/LastDocdate' }"/>
+											<Label text="Last Payment Amount"/>
+											<Text id="idLastAmount"
+												text="{ type: 'sap.ui.model.type.Currency', formatOptions: { maxFractionDigits: 2 }, parts: [ { path: '/LastAmount' }, 'SAR'] }"/>
+											<Label text="Block Date"/>
+											<Text id="idZblockedDate" text="{ type:'sap.ui.model.type.Date', formatOptions : { style:'medium'}, path: '/ZblockedDate' }"/>
+										</f:content>
+									</f:SimpleForm>
+								</VBox>
+							</WizardStep>
+							<WizardStep id="idSalesTeam" title="Sales Data" validated="true">
+								<MessageStrip class="sapUiSmallMarginBottom" text="{localModel>/docSalesDataMsg}" showIcon="true"/>
+								<f:SimpleForm id="idSalesData" editable="true" title="" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+									labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+									singleContainerFullSize="false">
+									<f:content>
+										<core:Title text="By Sales Team"/>
+										<Label text="Transfer the Customer To"/>
+										<RadioButtonGroup columns="2" id="idActionType" enabled="{localModel>/idActionType}" selectedIndex="{/SelectedType}">
+											<buttons>
+												<RadioButton text="Collection" id="idCollection"/>
+												<RadioButton text="Legal" id="idLegal"/>
+											</buttons>
+										</RadioButtonGroup>
+										<Label text="Requestor Comments" required="true"/>
+										<TextArea value="{/ReqComment}" id="idReqComments" growing="true" width="50%" maxLength="160" enabled="{localModel>/onSave}"/>
+										<Label text="Reports" required="true"/>
+										<u:FileUploader id="idfileUploaderRep" width="100%" tooltip="Upload Report" style="Emphasized" maximumFileSize="2" 
+											enabled="{localModel>/onSave}" fileSizeExceed="handleFile" visible="{localModel>/idfileUploaderRep}"
+											placeholder="Choose a file for Upload..."/>
+										<Button id="idfileRepBtn" type="Accept" press="openRepFile" visible="{localModel>/idfileRepBtn}" icon="sap-icon://action"/>
+										<Label text="Shop Picture"/>
+										<u:FileUploader id="idfileUploaderPic1" width="100%" tooltip="Upload Shop Picture " style="Emphasized" enabled="{localModel>/onSave}"
+											placeholder="Choose a file for Upload..." visible="{localModel>/idfileUploaderPic1}" maximumFileSize="2" fileSizeExceed="handleFile"/>
+										<Button id="idfilePic1Btn" type="Accept" press="openPic1File" visible="{localModel>/idfilePic1Btn}" icon="sap-icon://action"
+											ariaLabelledBy="actionButtonLabel"/>
+										<Label text="Other Picture"/>
+										<u:FileUploader id="idfileUploaderPic2" width="100%" tooltip="Upload Other Picture " style="Emphasized" enabled="{localModel>/onSave}"
+											placeholder="Choose a file for Upload..." visible="{localModel>/idfileUploaderPic2}" maximumFileSize="2" fileSizeExceed="handleFile"/>
+										<Button id="idfilePic2Btn" type="Accept" press="openPic2File" visible="{localModel>/idfilePic2Btn}" icon="sap-icon://action"
+											ariaLabelledBy="actionButtonLabel"/>
+										<Label/>
+										<Button id="onSave" text="Save" press="onSaveRequest" enabled="{localModel>/onSave}"/>
+										<!--<Button id="onContinue" text="Continue" press="onContinue" enabled="{localModel>/onContinue}"/>-->
+									</f:content>
+								</f:SimpleForm>
+							</WizardStep>
+							<WizardStep id="idAttach" title="Confirmation, Acceptance and Documents" validated="true">
+								<MessageStrip class="sapUiSmallMarginBottom" text="{localModel>/docRequiredMsg}" showIcon="true"/>
+								<f:SimpleForm id="idAccountData" editable="true" title="" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+									labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+									singleContainerFullSize="false">
+									<f:content>
+										<core:Title text="By Account Team"/>
+										<Label text="Balance Confirmation(SAR)"/>
+										<Input id="idBalance" value="{parts: ['/BalConfirm', 'SAR'], type:'sap.ui.model.type.Currency'}" liveChange="creditScreenValidation"
+											enabled="{localModel>/idAccount}" valueHelpOnly="true" required="true"/>
+										<CheckBox selected="{/BalConOrg}" text="Orginal" enabled="{localModel>/idAccount}" id="idBalOrig"/>
+										<CheckBox selected="{/BalConCpy}" text="Copy" enabled="{localModel>/idAccount}" id="idBalCopy"/>
+										<Label text="Invoices Total Amount(SAR)"/>
+										<Input id="idInvAmount" value="{parts: ['/InvAmt', 'SAR'], type:'sap.ui.model.type.Currency'}" liveChange="creditScreenValidation"
+											enabled="{localModel>/idAccount}" valueHelpOnly="true"/>
+										<CheckBox selected="{/InvOrg}" text="Orginal" id="idInvOrig" enabled="{localModel>/idAccount}"/>
+										<CheckBox selected="{/InvCpy}" text="Copy" id="idInvCopy" enabled="{localModel>/idAccount}"/>
+										<core:Title text="By Credit Control"/>
+										<Label text="New Transfer Request Type"/>
+										<CheckBox text="Allow Changing Transfer Request" visible="{localModel>/idCredTeamAbove}" id="idChange" select="onCheckBoxSelection"/>
+										<RadioButtonGroup columns="2" id="idActionType_New" visible="{localModel>/idAllowChangeType}" selectedIndex="{/SelectedType}">
+											<buttons>
+												<RadioButton text="Collection" id="idCollectionNew"/>
+												<RadioButton text="Legal" id="idLegalNew"/>
+											</buttons>
+										</RadioButtonGroup>
+										<Label text="Contract"/>
+										<u:FileUploader id="idfileUploaderCon" width="100%" tooltip="Upload Contract" style="Emphasized" placeholder="Choose a file for Upload..."
+											visible="{localModel>/idCredTeam}" enabled="{localModel>/idCredTeam}" maximumFileSize="2" fileSizeExceed="handleFile"/>
+										<Button id="idfileConBtn" type="Accept" press="openConFile" visible="{localModel>/idfileConBtn}" icon="sap-icon://action"
+											ariaLabelledBy="actionButtonLabel"/>
+										<CheckBox selected="{/ContractOrg}" text="Orginal" enabled="{localModel>/idCredTeam}" id="idConOrig"/>
+										<CheckBox selected="{/ContractCpy}" text="Copy" enabled="{localModel>/idCredTeam}" id="idConCopy"/>
+										<Label text="Credit Facility"/>
+										<u:FileUploader id="idfileUploaderCF" width="100%" tooltip="Upload Credit Facility" style="Emphasized" maximumFileSize="2"
+											enabled="{localModel>/idCredTeam}" fileSizeExceed="handleFile" placeholder="Choose a file for Upload..." visible="{localModel>/idCredTeam}"/>
+										<Button id="idfileCF" press="openCFFile" visible="{localModel>/idfileCF}" icon="sap-icon://action" ariaLabelledBy="actionButtonLabel"/>
+										<CheckBox selected="{/CfOrg}" text="Orginal" id="idCFOrig" enabled="{localModel>/idCredTeam}"/>
+										<CheckBox selected="{/CfCpy}" text="Copy" id="idCFCopy" enabled="{localModel>/idCredTeam}"/>
+										<Label text="Commercial Registration Document"/>
+										<u:FileUploader id="idfileUploaderCR" width="100%" tooltip="Upload Commercial Registration Document" style="Emphasized" maximumFileSize="2"
+											enabled="{localModel>/idCredTeam}" fileSizeExceed="handleFile" placeholder="Choose a file for Upload..." visible="{localModel>/idCredTeam}"/>
+										<Button id="idfileCR" width="100%" press="openCRFile" visible="{localModel>/idfileCR}" icon="sap-icon://action"
+											ariaLabelledBy="actionButtonLabel"/>
+										<Label text="Shop License"/>
+										<u:FileUploader id="idfileUploaderShopLicense" width="100%" tooltip="Upload Shop License" style="Emphasized" maximumFileSize="2"
+											enabled="{localModel>/idCredTeam}" fileSizeExceed="handleFile" placeholder="Choose a file for Upload..." visible="{localModel>/idCredTeam}"/>
+										<Button id="idfileLicense" press="openLicenseFile" visible="{localModel>/idfileLicense}" icon="sap-icon://action"/>
+										<Label text="Promissory note"/>
+										<u:FileUploader id="idfileUploaderPromissory" width="100%" tooltip="Upload promissory note" style="Emphasized" maximumFileSize="2"
+											enabled="{localModel>/idCredTeam}" fileSizeExceed="handleFile" placeholder="Choose a file for Upload..." visible="{localModel>/idCredTeam}"/>
+										<Button id="idfilePromissory" width="100%" press="openPromissoryFile" visible="{localModel>/idfilePromissory}" icon="sap-icon://action"/>
+										<core:Title text="Legal Team" visible="{localModel>/idLegalTeam}"/>
+										<Label text="Received The documents by Collection Department" visible="{localModel>/idLegalTeam}"/>
+										<ComboBox id="idLegalTeam" showSecondaryValues="true" selectedKey="Yes" enabled="{localModel>/idLegalTeam}"
+											visible="{localModel>/idLegalTeam}" width="50%">
+											<items>
+												<core:ListItem key="Yes" text="Yes"/>
+												<core:ListItem key="No" text="No"/>
+											</items>
+										</ComboBox>
+										<core:Title text="On Rejection Team Action"/>
+										<Label text="Action For"/>
+										<ComboBox id="idCustType" selectionChange="onChangeCustType" showSecondaryValues="true" selectedKey="SUP" enabled="{localModel>/idCustType}"
+											visible="{localModel>/idCustType}" width="50%">
+											<items>
+												<core:ListItem key="SUP" text="Sales Team"/>
+												<core:ListItem key="ACC" text="Accounts Team"/>
+												<core:ListItem key="CC" text="Credit Control Team"/>
+											</items>
+										</ComboBox>
+										<Label/>
+										<Button id="idExecutiveSave" text="Save" press="onSaveCCAbove" activeIcon="sap-icon://save" enabled="{localModel>/idCredTeamAbove}"
+											visible="{localModel>/idCredTeamAbove}"/>
+										<Button id="onSaveAccount" text="Save Account" press="onSaveAccount" enabled="{localModel>/idAccountSave}"/>
+										<Button id="onSaveCC" text="Save Credit Control" press="onSaveCC" enabled="{localModel>/idCredTeam}"/>
+										<Button id="onHistory" text="View History" press="onViewHistory"/>
+									</f:content>
+								</f:SimpleForm>
+							</WizardStep>
+						</Wizard>
+					</content>
+				</Page>
+			</pages>
+		</NavContainer>
+	</Shell>
+</mvc:View>

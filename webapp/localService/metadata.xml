@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="ZCUS_CREDIT_LIMIT_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="items" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="PayerId"/>
+					<PropertyRef Name="Matnr"/>
+				</Key>
+				<Property Name="PayerId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="PayerId" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ZspecialPrice" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="2" sap:unicode="false" sap:label="Special price"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ZfreeMonthly" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="2" sap:unicode="false" sap:label="Free Monthly"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ZbudgetPrice" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="2" sap:unicode="false" sap:label="Budget Price"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Zdescr" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="description" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Zuom" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="uom" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="payterms" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="zterm"/>
+				</Key>
+				<Property Name="zterm" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="text" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="priceType" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="Key"/>
+				</Key>
+				<Property Name="Key" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="Customer" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="PayerId"/>
+				</Key>
+				<Property Name="PayerId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="PayerId" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Name" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Zsalesoffice" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Sales Office"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ZsalesofficeDescr" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Sales Office Desc"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Zchannel" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Distr. Channel"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ZchannelDescr" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Distr. Channel Desc"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Zspart" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Division" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ZspartDescr" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Division Desc"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Preseller" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Preseller" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="PresellerName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Preseller Name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Zcreditlimit" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="3" sap:unicode="false" sap:label="credit limit"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ReceivableAmt" Type="Edm.Decimal" Nullable="false" Precision="23" Scale="3" sap:unicode="false"
+					sap:label="Receivable Amount" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="AvailableAmt" Type="Edm.Decimal" Nullable="false" Precision="23" Scale="3" sap:unicode="false" sap:label="Available Amt"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Zterm" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Payment term" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Name_Ar" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Name Arabic" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Zterm_Desc" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Payment Term Desc"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Error" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="RequestId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="RequestId" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="PendingFrom" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="PendingFrom"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Mobile" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Mobile" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="EMail" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Email" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="VAT" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="VAT Reg No" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="CRNo" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="CR No" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="CRExpDate" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="CRExpDate" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="customerType" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="Ztype"/>
+				</Key>
+				<Property Name="Ztype" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="text" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="CreditLimitDetail" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="RequestId"/>
+				</Key>
+				<Property Name="PayerId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Customer" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="RequestId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="RequestId" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Name_Ar" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name Arabic" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Zpricetype" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Price Type"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ReceivableAmt" Type="Edm.Decimal" Nullable="false" Precision="23" Scale="3" sap:unicode="false"
+					sap:label="Receivable Amount" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Zcreditlimit" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="3" sap:unicode="false" sap:label="credit limit"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="AvailableAmt" Type="Edm.Decimal" Nullable="false" Precision="23" Scale="3" sap:unicode="false" sap:label="Available Amt"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="CustomerType" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Zterm" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Zterm" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="Submit" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="RequestId"/>
+				</Key>
+				<Property Name="RequestId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="Signature" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="RequestId"/>
+				</Key>
+				<Property Name="RequestId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="Comments" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="RequestId"/>
+				</Key>
+				<Property Name="RequestId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="RequestId" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="CmComments" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="Comments"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="CcComments" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="Comments"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="VpsComments" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="Comments"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="VpfComments" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="Comments"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="CeoComments" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="Comments"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="Attachments" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="RequestId"/>
+					<PropertyRef Name="Ztype"/>
+				</Key>
+				<Property Name="RequestId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="RequestId" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Ztype" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Attatchment Type"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Filename" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Character 100"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Content" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="CONTENT" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Filetype" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Character 100"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="CreditLimit" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="RequestId"/>
+				</Key>
+				<Property Name="PayerId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Customer" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="RequestId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="RequestId" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Zsalesoffice" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Sales Office"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ZsalesofficeDescr" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Sales Office Desc"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Zchannel" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Distr. Channel"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ZchannelDescr" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Distr. Channel Desc"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Zspart" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Division" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ZspartDescr" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Division Desc"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Preseller" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Preseller" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="PresellerName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Preseller Name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Contact wf status"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ZwiId" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Work Item ID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="DigitalSign" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Single-Character Flag"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Zterm" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Payment term" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Aedat" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Changed On" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Aetim" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Changed at" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Aenam" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Changed by" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="RequestBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User Name" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="PendingFrom" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Pending Usre Name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Name_Ar" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name Arabic" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Error" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Zpricetype" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Price Type"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="CustomerType" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Zcreditlimit" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="3" sap:unicode="false" sap:label="credit limit"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ReceivableAmt" Type="Edm.Decimal" Nullable="false" Precision="23" Scale="3" sap:unicode="false"
+					sap:label="Receivable Amount" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="AvailableAmt" Type="Edm.Decimal" Nullable="false" Precision="23" Scale="3" sap:unicode="false" sap:label="Available Amt"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Zterm_Desc" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Payment Term Desc"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="CurrentApproval" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Current Approval"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ZtermNew" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Payment term"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ZpricetypeNew" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Price Type"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="CustomerTypeNew" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ZcreditlimitNew" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="3" sap:unicode="false" sap:label="credit limit"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Zterm_DescNew" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Payment Term Desc"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Mobile" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Mobile" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="EMail" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Email" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="VAT" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="VAT Reg No" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="CRNo" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="CR No" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="CRExpDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="CRExpDate"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="EMailNew" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Email" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="VATNew" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="VAT Reg No" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="CRNoNew" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="CR No" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="MobileNew" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Mobile" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="Payer" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="PayerId"/>
+				</Key>
+				<Property Name="PayerId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Customer" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Name" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityContainer Name="ZCUS_CREDIT_LIMIT_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+				<EntitySet Name="itemsSet" EntityType="ZCUS_CREDIT_LIMIT_SRV.items" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="paytermsSet" EntityType="ZCUS_CREDIT_LIMIT_SRV.payterms" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="priceTypeSet" EntityType="ZCUS_CREDIT_LIMIT_SRV.priceType" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="CustomerSet" EntityType="ZCUS_CREDIT_LIMIT_SRV.Customer" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="customerTypeSet" EntityType="ZCUS_CREDIT_LIMIT_SRV.customerType" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="CreditLimitDetailSet" EntityType="ZCUS_CREDIT_LIMIT_SRV.CreditLimitDetail" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+				<EntitySet Name="SubmitSet" EntityType="ZCUS_CREDIT_LIMIT_SRV.Submit" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+				<EntitySet Name="SignatureSet" EntityType="ZCUS_CREDIT_LIMIT_SRV.Signature" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+				<EntitySet Name="CommentsSet" EntityType="ZCUS_CREDIT_LIMIT_SRV.Comments" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="AttachmentsSet" EntityType="ZCUS_CREDIT_LIMIT_SRV.Attachments" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="CreditLimitSet" EntityType="ZCUS_CREDIT_LIMIT_SRV.CreditLimit" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="PayerSet" EntityType="ZCUS_CREDIT_LIMIT_SRV.Payer" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+			</EntityContainer>
+			<atom:link rel="self" href="http://gwdev.gbc.sa:8047/sap/opu/odata/sap/ZCUS_CREDIT_LIMIT_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/>
+			<atom:link rel="latest-version" href="http://gwdev.gbc.sa:8047/sap/opu/odata/sap/ZCUS_CREDIT_LIMIT_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
