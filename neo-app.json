@@ -45,10 +45,10 @@
       "path": "/sap/opu/odata",
       "target": {
         "type": "destination",
-        "name": "DEV_BRN",
+        "name": "DEV_BRN_HEC",
         "entryPath": "/sap/opu/odata"
       },
-      "description": "DEVS4"
+      "description": "DEV HEC"
     }
   ],
   "sendWelcomeFileRedirect": true

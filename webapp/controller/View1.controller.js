@@ -88,9 +88,9 @@ sap.ui.define([
 							// that.getView().byId("idLegal").set             
 						}
 						that.getView().getModel("localModel").setProperty("/idReqComments", false);
-						that.getView().getModel("localModel").setProperty("/idfileUploaderRep", false);
-						that.getView().getModel("localModel").setProperty("/idfileUploaderPic1", false);
-						that.getView().getModel("localModel").setProperty("/idfileUploaderPic2", false);
+						// that.getView().getModel("localModel").setProperty("/idfileUploaderRep", false);
+						// that.getView().getModel("localModel").setProperty("/idfileUploaderPic1", false);
+						// that.getView().getModel("localModel").setProperty("/idfileUploaderPic2", false);
 						// that.getView().getModel("localModel").setProperty("/idReqComments", false);
 
 						switch (oData.Lvl) {
