@@ -30,3 +30,13 @@ server:
       configuration:
         component: contract.zlegal
         ui5Theme: sap_fiori_3
+    - name: sap-fe-mockserver
+      beforeMiddleware: csp
+      configuration:
+        mountPath: /
+        services:
+          - urlPath: /sap/opu/odata/sap/ZSD_LEGAL_COLLECT_SRV
+            metadataPath: ./webapp/localService/ZSD_LEGAL_COLLECT_SRV/metadata.xml
+            mockdataPath: ./webapp/localService/ZSD_LEGAL_COLLECT_SRV/data
+            generateMockData: true
+        annotations: []
